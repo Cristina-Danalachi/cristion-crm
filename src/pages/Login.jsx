@@ -24,6 +24,21 @@ function Login() {
     e.preventDefault();
     setError("");
 
+    if (!formData.email.trim()) {
+      setError("Email is required.");
+      return;
+    }
+
+    if (!formData.email.includes("@") || !formData.email.includes(".")) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    if (!formData.password.trim()) {
+      setError("Password is required.");
+      return;
+    }
+
     try {
       login(formData.email, formData.password);
       navigate("/dashboard");
@@ -36,7 +51,7 @@ function Login() {
     <main>
       <h1>Login</h1>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
 
       <form onSubmit={handleSubmit} className="form">
         <input

@@ -27,24 +27,23 @@ function Dashboard() {
   }
 
   function validateForm() {
-    if (
-      !formData.title ||
-      !formData.clientName ||
-      !formData.price ||
-      !formData.deadline ||
-      !formData.description
-    ) {
-      setError("Please complete all required fields.");
-      return false;
-    }
-
-    if (Number(formData.price) <= 0) {
-      setError("Price must be greater than 0.");
-      return false;
-    }
-
-    return true;
+  if (!formData.title.trim()) {
+    setError("Project title is required.");
+    return false;
   }
+
+  if (!formData.clientName.trim()) {
+    setError("Client name is required.");
+    return false;
+  }
+
+  if (formData.price && Number(formData.price) <= 0) {
+    setError("Price must be greater than 0.");
+    return false;
+  }
+
+  return true;
+}
 
   function handleSubmit() {
     setError("");

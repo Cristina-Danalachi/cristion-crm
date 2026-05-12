@@ -26,8 +26,23 @@ function Register() {
     e.preventDefault();
     setError("");
 
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.password) {
-      setError("Complete all fields!");
+    if (!formData.firstName.trim()) {
+      setError("First name is required.");
+      return;
+    }
+
+    if (!formData.lastName.trim()) {
+      setError("Last name is required.");
+      return;
+    }
+
+    if (!formData.email.includes("@") || !formData.email.includes(".")) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    if (formData.password.length < 6) {
+      setError("Password must be at least 6 characters.");
       return;
     }
 
@@ -39,7 +54,7 @@ function Register() {
     <main>
       <h1>Create account</h1>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
 
       <form onSubmit={handleSubmit} className="form">
         <input

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Home() {
   return (
     <main className="home-hero">
@@ -7,9 +9,11 @@ function Home() {
 
       <p>Premium Webdesign & Client Manager</p>
 
-      <button style={{ marginTop: "20px" }}>
-        Get Started
-      </button>
+      <Link to="/register">
+        <button style={{ marginTop: "20px" }}>
+          Get Started
+        </button>
+      </Link>
     </main>
   );
 }
